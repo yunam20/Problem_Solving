@@ -1,42 +1,42 @@
 using System;
 using UnityEngine;
 
-public class Node
+public class Node<T>
 {
-    internal int data;
-    internal Node next;
-    public Node(int data)
+    internal T data;
+    internal Node<T> next;
+    public Node(T data)
     {
         this.data = data;
         next = null;
     }
 }
 
-public class LinkedList
+public class LinkedList<T>
 {
-    Node head;
-    internal void InsertFront(int data)
+    Node<T> head;
+    internal void InsertFront(T data)
     {
-        Node node = new Node(data);
+        Node<T> node = new Node<T>(data);
         node.next = head;
         head = node;
     }
 
-    internal void InsertLast(int data)
+    internal void InsertLast(T data)
     {
-        Node node = new Node(data);
+        Node<T> node = new Node<T>(data);
         if (head == null)
         {
             head = node;
             return;
         }
-        Node lastNode = GetLastNode();
+        Node<T> lastNode = GetLastNode();
         lastNode.next = node;
     }
 
-    internal Node GetLastNode()
+    internal Node<T> GetLastNode()
     {
-        Node temp = head;
+        Node<T> temp = head;
         while (temp.next != null)
         {
             temp = temp.next;
@@ -44,42 +44,42 @@ public class LinkedList
         return temp;
     }
 
-    // prev µÚ¿¡ data¸¦ °®´Â ³ëµå¸¦ »ğÀÔÇÏ±â
-    internal void InsertAfter(int prev, int data)
+    // prev ë’¤ì— dataë¥¼ ê°–ëŠ” ë…¸ë“œë¥¼ ì‚½ì…í•˜ê¸°
+    internal void InsertAfter(T prev, T data)
     {
-        Node prevNode = null;
+        Node<T> prevNode = null;
 
         // find prev
-        for (Node temp = head; temp != null; temp = temp.next)
-            if (temp.data == prev)
+        for (Node<T> temp = head; temp != null; temp = temp.next)
+            if (temp.data.Equals(prev))
                 prevNode = temp;
 
         if (prevNode == null)
         {
-            Console.WriteLine("{0} data is not in the list");
+            Debug.Log(prev + " data is not in the list");
             return;
         }
-        Node node = new Node(data);
+        Node<T> node = new Node<T>(data);
         node.next = prevNode.next;
         prevNode.next = node;
     }
 
-    // key °ªÀ» ÀúÀåÇÏ°í ÀÖ´Â ³ëµå¸¦ »èÁ¦ÇÏ±â
-    internal void DeleteNode(int key)
+    // key ê°’ì„ ì €ì¥í•˜ê³  ìˆëŠ” ë…¸ë“œë¥¼ ì‚­ì œí•˜ê¸°
+    internal void DeleteNode(T key)
     {
-        Node temp = head;
-        Node prev = null;
-        if (temp != null && temp.data == key) // head°¡ Ã£´Â °ªÀÌ¸é
+        Node<T> temp = head;
+        Node<T> prev = null;
+        if (temp != null && temp.data.Equals(key)) // headê°€ ì°¾ëŠ” ê°’ì´ë©´
         {
             head = temp.next;
             return;
         }
-        while (temp != null && temp.data != key)
+        while (temp != null && !temp.data.Equals(key))
         {
             prev = temp;
             temp = temp.next;
         }
-        if (temp == null) // ³¡±îÁö Ã£´Â °ªÀÌ ¾øÀ¸¸é
+        if (temp == null) // ëê¹Œì§€ ì°¾ëŠ” ê°’ì´ ì—†ìœ¼ë©´
         {
             return;
         }
@@ -88,9 +88,9 @@ public class LinkedList
 
     internal void Reverse()
     {
-        Node prev = null;
-        Node current = head;
-        Node temp = null;
+        Node<T> prev = null;
+        Node<T> current = head;
+        Node<T> temp = null;
         while (current != null)
         {
             temp = current.next;
@@ -103,37 +103,23 @@ public class LinkedList
 
     internal void Print()
     {
-        for (Node node = head; node != null; node = node.next)
-            Console.Write(node.data + " -> ");
-        Console.WriteLine();
+        for (Node<T> node = head; node != null; node = node.next)
+            Debug.Log(node.data);
     }
 }
 
-public class Queue
+public class Queue<T> : MonoBehaviour
 {
-    public Queue()
-    {
+    LinkedList<T> list = new LinkedList<T>();
 
+    public void Enqueue(T data)
+    {
+        list.InsertLast(data);
     }
 
-    public void Pop()
+    // LinkedListì˜ í—¤ë“œ ë¶€ë¶„ì„ ì‚­ì œ, insertëŠ” lastì—ì„œ ì´ë¤„ì§€ë¯€ë¡œ head ë¶€ë¶„ì„ ì‚­ì œí•˜ë©´ ì„ ì…ì„ ì¶œ ë°©ì‹ì„ ì™„ì„±í•  ìˆ˜ ìˆìŒ
+    public void Dequeue()
     {
-
-    }
-
-    public void Push()
-    {
-
-    }
-
-    public void Size()
-    {
-
-    }
-
-    public void Empty()
-    {
-
+        if (list.head != null) list.DeleteNode(list.head.data);
     }
 }
-
