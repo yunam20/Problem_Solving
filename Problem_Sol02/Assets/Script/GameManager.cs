@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject greenCube;
+    public GameObject redCube;
     public GameObject bulletPrefab;
     public Mc.Queue<GameObject> bulletList;
     public int bulletCount;
