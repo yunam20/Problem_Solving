@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public GameObject bulletPrefab;
     public Mc.Queue<GameObject> bulletList;
     public int bulletCount;
-    public Mc.Stack<int> test;
 
     void Awake()
     {
@@ -24,14 +23,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // stack 테스트용 코드
-        test = new Mc.Stack<int>();
-        test.Push(1);
-        test.Push(2);
-        test.Push(3);
-        Debug.Log(test.Pop());
-        Debug.Log(test.Pop());
-
         // 큐를 통한 메모리 풀링
         bulletList = new Mc.Queue<GameObject>();
         bulletCount = 0;
