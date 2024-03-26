@@ -16,6 +16,7 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.right * Time.deltaTime * 5f);
+        transform.Rotate(Time.deltaTime * 360f, 0f, 0f);
 
         // 오버랩박스를 이용하여 충돌체 검출
         Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity);

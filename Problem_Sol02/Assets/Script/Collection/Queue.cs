@@ -7,6 +7,11 @@ namespace Mc
     {
         LinkedList<T> list = new LinkedList<T>();
 
+        public int Count
+        {
+            get { return list.Count; }
+        }
+
         public void Enqueue(T data)
         {
             list.InsertLast(data);

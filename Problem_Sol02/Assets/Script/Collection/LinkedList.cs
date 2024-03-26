@@ -5,12 +5,14 @@ namespace Mc
     public class LinkedList<T>
     {
         public Node<T> head;
+        public int Count { get; private set; }
 
         internal void InsertFront(T data)
         {
             Node<T> node = new Node<T>(data);
             node.next = head;
             head = node;
+            Count++;
         }
 
         internal void InsertLast(T data)
@@ -19,10 +21,13 @@ namespace Mc
             if (head == null)
             {
                 head = node;
-                return;
             }
-            Node<T> lastNode = GetLastNode();
-            lastNode.next = node;
+            else
+            {
+                Node<T> lastNode = GetLastNode();
+                lastNode.next = node;
+            }
+            Count++;
         }
 
         internal Node<T> GetLastNode()
@@ -35,7 +40,6 @@ namespace Mc
             return temp;
         }
 
-        // prev 뒤에 data를 갖는 노드를 삽입하기
         internal void InsertAfter(T prev, T data)
         {
             Node<T> prevNode = null;
@@ -53,9 +57,9 @@ namespace Mc
             Node<T> node = new Node<T>(data);
             node.next = prevNode.next;
             prevNode.next = node;
+            Count++;
         }
 
-        // key 값을 저장하고 있는 노드를 삭제하기
         internal void DeleteNode(T key)
         {
             Node<T> temp = head;
@@ -63,6 +67,7 @@ namespace Mc
             if (temp != null && temp.data.Equals(key)) // head가 찾는 값이면
             {
                 head = temp.next;
+                Count--;
                 return;
             }
             while (temp != null && !temp.data.Equals(key))
@@ -75,6 +80,7 @@ namespace Mc
                 return;
             }
             prev.next = temp.next;
+            Count--;
         }
 
         internal void Reverse()
