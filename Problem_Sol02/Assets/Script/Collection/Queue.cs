@@ -5,7 +5,7 @@ namespace Mc
 {
     public class Queue<T> : MonoBehaviour
     {
-        LinkedList<T> list = new LinkedList<T>();
+        public LinkedList<T> list = new LinkedList<T>();
 
         public int Count
         {
