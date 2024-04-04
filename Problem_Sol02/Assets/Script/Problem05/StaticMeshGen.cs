@@ -77,7 +77,13 @@ public class StaticMeshGen : MonoBehaviour
             19,20,21,
             17,19,21,
             21,13,17,
-            15,17,13
+            15,17,13,
+
+            0, 11, 1,
+            11, 12, 1,
+
+            2, 3, 13,
+            13, 14, 2,
         };
 
         mesh.triangles = triangleIndices;
