@@ -43,6 +43,18 @@ public class StaticMeshGen : MonoBehaviour
             new Vector3 (-2.0f, -4.0f, 0.0f), //8
             new Vector3 (-3.0f, -2.0f, 0.0f), //9
             new Vector3 (-1.0f, -2.0f, 0.0f), //10
+
+            new Vector3 (0.0f, 0.0f, -10.0f), //11
+            new Vector3 (-1.0f, -2.0f, -10.0f), //12
+            new Vector3 (1.0f, -2.0f, -10.0f), //13
+            new Vector3 (3.0f, -2.0f, -10.0f), //14
+            new Vector3 (2.0f, -4.0f, -10.0f), //15
+            new Vector3 (3.0f, -6.0f, -10.0f), //16
+            new Vector3 (0f, -5.0f, -10.0f), //17
+            new Vector3 (-3.0f, -6.0f, -10.0f), //18
+            new Vector3 (-2.0f, -4.0f, -10.0f), //19
+            new Vector3 (-3.0f, -2.0f, -10.0f), //20
+            new Vector3 (-1.0f, -2.0f, -10.0f), //21
         };
 
         mesh.vertices = vertices;
@@ -56,7 +68,16 @@ public class StaticMeshGen : MonoBehaviour
             8,9,10,
             6,8,10,
             10,2,6,
-            4,6,2
+            4,6,2,
+
+            11,13,12,
+            13,14,15,
+            15,16,17,
+            17,18,19,
+            19,20,21,
+            17,19,21,
+            21,13,17,
+            15,17,13
         };
 
         mesh.triangles = triangleIndices;
