@@ -56,8 +56,9 @@ public class StaticMeshGen : MonoBehaviour
         };
 
         int[] triangleIndices = new int[]
+
         {
-            1,0,2,
+            0,2,1,
             2,3,4,
             4,5,6,
             6,7,8,
@@ -65,23 +66,7 @@ public class StaticMeshGen : MonoBehaviour
             6,8,1,
             1,2,6,
             4,6,2,
-            10,12,11,
-            12,13,14,
-            14,15,16,
-            16,17,18,
-            18,19,11,
-            16,18,11,
-            11,12,16,
-            14,16,12,
 
-            1,2,0,
-            4,3,2,
-            6,5,4,
-            8,7,6,
-            1,9,8,
-            1,8,6,
-            6,2,1,
-            6,4,2,
             11,12,10,
             14,13,12,
             16,15,14,
@@ -113,9 +98,10 @@ public class StaticMeshGen : MonoBehaviour
             10,0,1,
         };
 
+
         Vector3[] normals = new Vector3[vertices.Length];
 
-        // Compute normals for each triangle
+        //법선벡터 구하기
         for (int i = 0; i < triangleIndices.Length; i += 3)
         {
             int index0 = triangleIndices[i];
@@ -131,10 +117,11 @@ public class StaticMeshGen : MonoBehaviour
             normals[index2] += normal;
         }
 
-        // Normalize normals
+        //법선벡터 정규화
         for (int i = 0; i < normals.Length; i++)
         {
             normals[i] = normals[i].normalized;
+            Debug.Log(normals[i]);
         }
 
         mesh.vertices = vertices;
@@ -145,5 +132,10 @@ public class StaticMeshGen : MonoBehaviour
         MeshRenderer mr = this.AddComponent<MeshRenderer>();
 
         mf.mesh = mesh;
+    }
+
+    private void Start()
+    {
+        GenerateMesh();
     }
 }

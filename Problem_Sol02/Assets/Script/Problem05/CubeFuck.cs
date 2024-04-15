@@ -39,22 +39,22 @@ public class CubeFuck : MonoBehaviour
         int[] triangleIndices = new int[]
         {
             // Bottom face
-            0, 2, 1,
-            0, 3, 2,
+            0, 1, 2,  // 수정: 정점 순서 변경
+            0, 2, 3,  // 수정: 정점 순서 변경
 
             // Top face
-            4, 5, 6,
-            4, 6, 7,
+            4, 6, 5,
+            4, 7, 6,
 
             // Side faces
-            0, 1, 5,
-            0, 5, 4,
-            1, 2, 6,
-            1, 6, 5,
-            2, 3, 7,
-            2, 7, 6,
-            3, 0, 4,
-            3, 4, 7
+            0, 5, 1,
+            0, 4, 5,
+            1, 6, 2,
+            1, 5, 6,
+            2, 7, 3,
+            2, 6, 7,
+            3, 4, 0,
+            3, 7, 4
         };
 
         Vector3[] normals = new Vector3[vertices.Length];
