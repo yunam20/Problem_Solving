@@ -44,7 +44,7 @@ Shader "Unlit/YellowShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float ambientStrength = 0.2;
+                float ambientStrength = 0.4;
                 float3 ambient = ambientStrength * _DiffuseColor;
 
                 // Light direction
@@ -62,7 +62,7 @@ Shader "Unlit/YellowShader"
                 // Combine ambient, diffuse, and specular
                 float3 result = (ambient + diffuse + specular);
 
-                float threshold = 0.2;
+                float threshold = 0.5;
 				float3 banding = floor(result / threshold);
 				float3 finalIntensity = banding * threshold;
 
