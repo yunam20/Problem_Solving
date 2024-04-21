@@ -70,8 +70,14 @@ Shader "Custom/YellowPhongShader"
                 fixed4 ambientColor = 0.1 * texColor; // 환경광 추가
                 fixed4 diffuseColor = diff * texColor * _LightColor;
                 fixed4 specularColor = spec * _SpecularColor;
-
-                return ambientColor + diffuseColor + specularColor; // 결과 색상 반환
+                
+                float3 result = (ambientColor + diffuseColor + specularColor);
+    
+                float threshold = 0.4;
+                float3 banding = floor(result / threshold);
+                float3 finalIntensity = banding * threshold;
+    
+                return float4(finalIntensity.x, finalIntensity.y, finalIntensity.z, 1.0); // 결과 색상 반환
             }
             ENDCG
         }

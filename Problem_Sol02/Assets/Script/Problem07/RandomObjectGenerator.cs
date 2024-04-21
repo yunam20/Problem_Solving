@@ -27,9 +27,12 @@ public class RandomObjectGenerator : MonoBehaviour
     }
 #endif
 
+    public GameObject RootObject; // 루트 오브젝트를 에디터에서 지정할 수 있도록 합니다.
+
     public void GenerateObjects()
     {
-        // 이 곳에 Object를 생성하고 배치하는 코드를 작성하세요.
+        GameObject parentObject = RootObject; // 첫 번째 생성된 오브젝트를 루트로 사용합니다.
+
         for (int i = 0; i < ObjectNumber; i++)
         {
             // 랜덤한 위치를 생성합니다.
@@ -41,8 +44,14 @@ public class RandomObjectGenerator : MonoBehaviour
 
             // TargetObject를 생성하고 랜덤한 위치에 배치합니다.
             GameObject newObject = Instantiate(TargetObject, randomPosition, Quaternion.identity);
-        }
 
+            // 부모 오브젝트를 설정합니다.
+            newObject.transform.parent = parentObject.transform;
+
+            // 다음 오브젝트를 위해 현재 생성된 오브젝트를 부모로 설정합니다 (선택적).
+            // 이렇게 하면 첫번째 오브젝트가 루트가 되고, 그 다음 생성된 오브젝트는 루트의 자식, 다음은 자식의 자식이 됩니다.
+            parentObject = newObject; // 이 줄을 주석 처리하면 모든 오브젝트가 같은 부모(루트)를 가집니다.
+        }
     }
 
 #if UNITY_EDITOR
