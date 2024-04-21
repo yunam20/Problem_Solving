@@ -7,9 +7,11 @@ public class EnemyScript : MonoBehaviour
     int currentHp = 100;
     float speed = 1f;
     // Start is called before the first frame update
+
     void Start()
     {
-        
+        Renderer renderer = GetComponent<Renderer>();
+        renderer.material.color = Color.blue; // 오브젝트의 색상을 빨간색으로 변경
     }
 
     // Update is called once per frame
