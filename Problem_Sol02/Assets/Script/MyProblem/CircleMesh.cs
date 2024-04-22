@@ -51,6 +51,19 @@ public class CircleMesh : MonoBehaviour
 
         mesh.vertices = vertices;
         mesh.triangles = triangles;
+        
+        // 메쉬의 정점 수에 맞춰 색상 배열 생성
+        Color[] colors = new Color[mesh.vertexCount];
+
+        // 모든 정점에 대해 빨간색 설정
+        for (int i = 0; i < mesh.vertexCount; i++)
+        {
+            colors[i] = Color.red;
+        }
+
+        // 메쉬의 색상 속성에 배열 할당
+        mesh.colors = colors;
+        
         mesh.RecalculateNormals();
 
         return mesh;
