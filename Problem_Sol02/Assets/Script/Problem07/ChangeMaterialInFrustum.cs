@@ -8,7 +8,7 @@ public class ChangeMaterialInFrustum : MonoBehaviour
     public Material material2; // 프러스텀 밖에 있는 오브젝트에 적용될 머티리얼
 
     private Camera thisCamera;
-
+    
     private void Start()
     {
         thisCamera = GetComponent<Camera>();
