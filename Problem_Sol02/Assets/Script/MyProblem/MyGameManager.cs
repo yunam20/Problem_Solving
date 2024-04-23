@@ -8,6 +8,7 @@ public class MyGameManager : MonoBehaviour
     public static MyGameManager instance;
     public PoolManager pool;
     public GameObject player;
+    public bool isGo = false;
     float spawnTime = 0f;
 
     void Awake()

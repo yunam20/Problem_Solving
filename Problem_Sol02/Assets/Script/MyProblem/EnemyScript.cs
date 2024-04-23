@@ -17,7 +17,10 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveToPlayer();
+        if (MyGameManager.instance.isGo)
+        { MoveToPlayer(); }
+        else { }
+
     }
 
     private void MoveToPlayer()
