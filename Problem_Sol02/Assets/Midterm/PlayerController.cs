@@ -112,4 +112,12 @@ public class PlayerController : MonoBehaviour
             text.text = "CLEAR!";
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            text.text = "Game Over!";
+        }
+    }
 }
