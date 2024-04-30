@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 90.0f; // 초당 회전 속도
     private float targetAngle = 0; // 목표 각도
     private bool isRotating = false; // 회전 중인지 확인하는 플래그
+    public TextMeshProUGUI text;
 
     public float speed = 5.0f; // 플레이어의 이동 속도
 
@@ -100,6 +102,14 @@ public class PlayerController : MonoBehaviour
         {
             isRotating = false;
             playerCamera.transform.eulerAngles = new Vector3(playerCamera.transform.eulerAngles.x, targetAngle, playerCamera.transform.eulerAngles.z);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("RedCube"))
+        {
+            text.text = "CLEAR!";
         }
     }
 }
