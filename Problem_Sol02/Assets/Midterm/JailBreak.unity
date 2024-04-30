@@ -355,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2031720754107012701, guid: dad1a5b62f880944ca6afec2f1751e3c, type: 3}
       propertyPath: patrolAreaCenter.z
-      value: 14.71
+      value: 11.71
       objectReference: {fileID: 0}
     - target: {fileID: 3797649463558498630, guid: dad1a5b62f880944ca6afec2f1751e3c, type: 3}
       propertyPath: m_Name
@@ -371,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4129392579279031778, guid: dad1a5b62f880944ca6afec2f1751e3c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.71
+      value: 11.71
       objectReference: {fileID: 0}
     - target: {fileID: 4129392579279031778, guid: dad1a5b62f880944ca6afec2f1751e3c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1068,6 +1068,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6212314765221330963, guid: ff043881b0b4dea4dbd2829130fc3d06, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1012346324495988428, guid: ff043881b0b4dea4dbd2829130fc3d06, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.6
