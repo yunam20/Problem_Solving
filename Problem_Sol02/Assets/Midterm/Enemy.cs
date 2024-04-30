@@ -54,6 +54,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (GameSceneManager.instance.endGame) return;
+
         // 카메라의 프러스텀을 가져오기
         frustum = new FrustumPlanes(enemyCamera);
 
@@ -73,7 +75,7 @@ public class Enemy : MonoBehaviour
                     transform.position = Vector3.MoveTowards(transform.position,
                     player.transform.position, speed * Time.deltaTime);
                     // 프러스텀 내에 있는 경우 Material1 적용
-                    renderer.material = material1;
+                    //renderer.material = material1;
 
                     patrolRadius = 500f;
                 }
@@ -87,7 +89,7 @@ public class Enemy : MonoBehaviour
                     else
                     {
                         StartRotation();
-                        renderer.material = material2;
+                        //renderer.material = material2;
                     }
                 }
             }

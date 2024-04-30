@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (GameSceneManager.instance.endGame) return;
+
         // 플레이어의 이동 입력을 받습니다.
         float horizontal = Input.GetAxis("Horizontal"); // A, D 키
         float vertical = Input.GetAxis("Vertical"); // W, S 키
@@ -109,6 +111,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("RedCube"))
         {
+            GameSceneManager.instance.endGame = true;
             text.text = "CLEAR!";
         }
     }
@@ -117,6 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            GameSceneManager.instance.endGame = true;
             text.text = "Game Over!";
         }
     }

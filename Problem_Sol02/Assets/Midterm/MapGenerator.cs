@@ -33,8 +33,8 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        float x = 17.6f/2f;
-        float z = 18.6f/2f;
+        float x = 17.6f/ 2f - 0.5f;
+        float z = 18.6f/ 2f - 0.5f;
 
         // 데이터 출력 (옵션)
         for (int i = 0; i < data.GetLength(0); i++)
@@ -60,7 +60,7 @@ public class MapGenerator : MonoBehaviour
                 }
                 x += 1f;
             }
-            x = 17.6f/2f;
+            x = 17.6f/2f - 0.5f;
             z += 1f;
         }
     }
