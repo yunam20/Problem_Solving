@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             PerformRotation();
         }
 
-        // playerCamera.transform.LookAt(transform);
+        playerCamera.transform.LookAt(transform);
     }
 
     void RotateCamera(float angle)
