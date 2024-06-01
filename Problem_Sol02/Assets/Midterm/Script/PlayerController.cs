@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour
     private float targetAngle = 0; // 목표 각도
     private bool isRotating = false; // 회전 중인지 확인하는 플래그
     public TextMeshProUGUI text;
+    public GameObject button;
 
     public float speed = 5.0f; // 플레이어의 이동 속도
+    private CharacterController characterController;
 
     private void Start()
     {
@@ -19,9 +21,16 @@ public class PlayerController : MonoBehaviour
         {
             playerCamera = Camera.main;
         }
+
+        // Character Controller 컴포넌트를 가져옵니다.
+        characterController = GetComponent<CharacterController>();
+        if (characterController == null)
+        {
+            Debug.LogError("CharacterController component is missing!");
+        }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (GameSceneManager.instance.endGame) return;
 
@@ -42,8 +51,8 @@ public class PlayerController : MonoBehaviour
         // 최종 이동 벡터를 계산합니다.
         Vector3 moveDirection = (cameraForward * vertical + cameraRight * horizontal).normalized;
 
-        // 이동 벡터에 따라 플레이어를 이동시킵니다.
-        transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+        // Character Controller를 사용하여 플레이어를 이동시킵니다.
+        characterController.Move(moveDirection * speed * Time.deltaTime);
 
         // 카메라 회전 입력 처리
         if (Input.GetKeyDown(KeyCode.O))
@@ -61,8 +70,6 @@ public class PlayerController : MonoBehaviour
         {
             PerformRotation();
         }
-
-        //playerCamera.transform.LookAt(transform);
     }
 
     void RotateCamera(float angle)
@@ -112,6 +119,8 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("RedCube"))
         {
             GameSceneManager.instance.endGame = true;
+            Time.timeScale = 0f;
+            button.SetActive(true);
             text.text = "CLEAR!";
         }
     }
@@ -121,7 +130,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             GameSceneManager.instance.endGame = true;
-            text.text = "Game Over!";
+            Time.timeScale = 0f;
+            button.SetActive(true);
+            text.text = "GAME OVER!";
         }
     }
 }

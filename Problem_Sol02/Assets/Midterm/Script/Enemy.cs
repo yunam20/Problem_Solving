@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,11 +11,13 @@ public class Enemy : MonoBehaviour
     public GameObject player;
 
     public Vector3 patrolAreaCenter; // 순찰 구역의 중심
-    public float patrolRadius = 5.0f; // 순찰 구역의 반경
+    public float patrolRadius = 1f; // 순찰 구역의 반경
     public float speed = 3.0f; // 이동 속도
 
     private Vector3 nextPosition; // 다음 목표 위치
     public bool isGo = true;
+
+    private NavMeshAgent agent;
 
     public void StartRotation()
     {
@@ -49,6 +52,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
         SetNextPosition();
     }
 
@@ -72,16 +77,15 @@ public class Enemy : MonoBehaviour
                 if (frustum.IsInsideFrustum(bounds))
                 {
                     isGo = false;
-                    transform.position = Vector3.MoveTowards(transform.position,
-                    player.transform.position, speed * Time.deltaTime);
+                    agent.SetDestination(player.transform.position);
                     // 프러스텀 내에 있는 경우 Material1 적용
-                    //renderer.material = material1;
+                    renderer.material = material1;
 
                     patrolRadius = 500f;
                 }
                 else
                 {
-                    patrolRadius = 5f;
+                    patrolRadius = 2.5f;
                     if (isGo)
                     {
                         MoveToNextPosition();
@@ -89,7 +93,7 @@ public class Enemy : MonoBehaviour
                     else
                     {
                         StartRotation();
-                        //renderer.material = material2;
+                        renderer.material = material2;
                     }
                 }
             }
@@ -109,16 +113,24 @@ public class Enemy : MonoBehaviour
         Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
         randomDirection.y = 0;
         nextPosition = patrolAreaCenter + randomDirection;
+
+        // NavMesh 상의 위치로 조정
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(nextPosition, out hit, patrolRadius, NavMesh.AllAreas))
+        {
+            nextPosition = hit.position;
+        }
     }
 
     void MoveToNextPosition()
     {
-        Vector3 moveDirection = nextPosition - transform.position;
-        transform.position += moveDirection.normalized * speed * Time.deltaTime;
-
         if (Vector3.Distance(transform.position, nextPosition) < 0.5f)
         {
             SetNextPosition();
+        }
+        else
+        {
+            agent.SetDestination(nextPosition);
         }
     }
 

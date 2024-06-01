@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1133240543023987337}
   - component: {fileID: 2031720754107012701}
   - component: {fileID: -1612197309793400403}
+  - component: {fileID: 7197518923052639241}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.535371, y: 9.298019, z: 10.642698}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8853969862211134669}
@@ -124,11 +125,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCamera: {fileID: 3347313787385989432}
-  material1: {fileID: 0}
-  material2: {fileID: 0}
+  material1: {fileID: 2100000, guid: 2618e1f357efdfc4d937b7d4ae46cd32, type: 2}
+  material2: {fileID: 2100000, guid: f5ad8414097ef6a4ab3f12cb48a09b83, type: 2}
   player: {fileID: 0}
   patrolAreaCenter: {x: 0, y: 0, z: 0}
-  patrolRadius: 5
+  patrolRadius: 2.5
   speed: 3
   isGo: 1
 --- !u!54 &-1612197309793400403
@@ -158,6 +159,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!195 &7197518923052639241
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797649463558498630}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7948405478558714371
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +284,6 @@ GameObject:
   - component: {fileID: 8853969862211134669}
   - component: {fileID: 2334691635615302737}
   - component: {fileID: 5098585052255250830}
-  - component: {fileID: 7157047904626392721}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -278,8 +300,8 @@ Transform:
   m_GameObject: {fileID: 8410367243402653287}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4696293, y: 0, z: 0.1733017}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0.33, y: 0.19, z: 0.01}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4129392579279031778}
@@ -334,24 +356,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7157047904626392721
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8410367243402653287}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
