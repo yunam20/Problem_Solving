@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Midterm/Scene/JailBreak.unity
+    guid: f437cebe679fdfc4aa6c6aa15b031591
   m_configObjects: {}

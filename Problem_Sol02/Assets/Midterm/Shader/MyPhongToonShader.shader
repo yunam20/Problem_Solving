@@ -1,4 +1,4 @@
-Shader "My/phongShader2"
+Shader "My/MyPhongToonShader"
 {
     Properties
     {
